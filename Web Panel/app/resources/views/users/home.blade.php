@@ -171,6 +171,8 @@
                                                                    href="{{ route('user.deactive', ['username' => $user->username]) }}">Deactive</a>
                                                                 <a class="dropdown-item"
                                                                    href="{{ route('user.reset', ['username' => $user->username]) }}">Reset Traffic</a>
+																<a class="dropdown-item"
+                                                                   href="{{ route('user.resettime', ['username' => $user->username]) }}">Reset Time</a>
                                                                 <a class="dropdown-item"
                                                                    href="{{ route('user.delete', ['username' => $user->username]) }}">Delete</a>
                                                             </div>

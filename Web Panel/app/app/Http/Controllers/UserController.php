@@ -255,7 +255,27 @@ class UserController extends Controller
         }
         return redirect()->back()->with('success', 'Reset Traffic');
     }
-
+	public function reset_time(Request $request,$username)
+    {
+        if (!is_string($username)) {
+            abort(400, 'Not Valid Username');
+        }
+        $user = Auth::user();
+        if($user->permission=='admin') {
+            $check_user = Users::where('username',$username)->count();
+            if ($check_user > 0) {
+                Users::where('username', $username)->update(['start_date' => '', 'end_date' => '']);
+            }
+        }
+        else
+        {
+            $check_user = Users::where('username', $username)->where('customer_user', $user->username)->count();
+            if ($check_user > 0) {
+                Users::where('username', $username)->update(['start_date' => '', 'end_date' => '']);
+            }
+        }
+        return redirect()->back()->with('success', 'Reset Time');
+    }
     public function delete(Request $request,$username)
     {
         if (!is_string($username)) {
@@ -290,7 +310,6 @@ class UserController extends Controller
     }
     public function delete_bulk(Request $request)
     {
-
         $user = Auth::user();
         if ($user->permission == 'admin') {
             foreach ($request->usernamed as $username) {

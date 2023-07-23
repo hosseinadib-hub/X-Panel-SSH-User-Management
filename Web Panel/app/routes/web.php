@@ -31,6 +31,7 @@ Route::prefix('cp')->group(function()
     Route::get('/user/active/{username}',[UserController::class,'activeuser'])->name('user.active');
     Route::get('/user/deactive/{username}',[UserController::class,'deactiveuser'])->name('user.deactive');
     Route::get('/user/reset/{username}',[UserController::class,'reset_traffic'])->name('user.reset');
+	Route::get('/user/resettime/{username}',[UserController::class,'reset_time'])->name('user.resettime');
     Route::get('/user/delete/{username}',[UserController::class,'delete'])->name('user.delete');
     Route::post('/user/delete/bulk',[UserController::class,'delete_bulk'])->name('user.delete.bulk');
     Route::post('/user/renewal',[UserController::class,'renewal'])->name('new.renewal');
